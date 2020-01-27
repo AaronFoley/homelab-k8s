@@ -1,0 +1,16 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nfs-client-provisioner
+  namespace: kube-system
+spec:
+  releaseName: nfs-client-provisioner
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    version: 1.2.8
+    name: nfs-client-provisioner
+  values:
+    nfs:
+      server: 10.71.6.4
+      path: /data/oc

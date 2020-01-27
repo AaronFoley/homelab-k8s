@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: flux-private
+  namespace: fluxcd
+spec:
+  releaseName: flux-private
+  chart:
+    repository: https://charts.fluxcd.io
+    name: flux
+    version: 1.1.0
+  values:
+    git:
+      url: "git@github.com:AaronFoley/homelab-k8s-private.git"

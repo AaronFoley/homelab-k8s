@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: fluxcd
+spec:
+  releaseName: flux
+  chart:
+    repository: https://charts.fluxcd.io
+    name: flux
+    version: 1.1.0
+  values:
+    git:
+      url: "git@github.com:AaronFoley/homelab-k8s.git"
