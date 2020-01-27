@@ -13,4 +13,3 @@ spec:
   values:
     helm:
       versions: v3
-    createCRD: True
