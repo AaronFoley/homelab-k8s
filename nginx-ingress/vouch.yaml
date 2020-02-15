@@ -3,7 +3,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: vouch-proxy
-  namespace: vouch-proxy
+  namespace: nginx-ingress
 spec:
   releaseName: vouch-proxy
   chart:
@@ -20,4 +20,3 @@ spec:
       name: vouch-secrets
   - configMapKeyRef:
       name: vouch-ingress
-      key: ingress
