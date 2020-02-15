@@ -14,7 +14,7 @@ spec:
     ingress:
       enabled: True
       annotations:
-        nginx.ingress.kubernetes.io/enable-global-auth: false
+        nginx.ingress.kubernetes.io/enable-global-auth: "false"
   valuesFrom:
   - secretKeyRef:
       name: vouch-secrets
