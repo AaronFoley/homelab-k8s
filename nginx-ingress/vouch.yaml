@@ -8,7 +8,7 @@ spec:
   releaseName: vouch-proxy
   chart:
     repository: https://halkeye.github.io/helm-charts/
-    name: vouch-proxy
+    name: vouch
     version: v0.1.3
   values:
     ingress:
