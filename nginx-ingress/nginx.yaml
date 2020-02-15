@@ -16,3 +16,6 @@ spec:
       service:
         loadBalancerIP: 10.71.100.1
         externalTrafficPolicy: Local
+  valuesFrom:
+  - configMapKeyRef:
+      name: nginx-config

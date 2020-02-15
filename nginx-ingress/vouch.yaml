@@ -1,0 +1,23 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: vouch-proxy
+  namespace: vouch-proxy
+spec:
+  releaseName: vouch-proxy
+  chart:
+    repository: https://halkeye.github.io/helm-charts/
+    name: vouch-proxy
+    version: v0.1.3
+  values:
+    ingress:
+      enabled: True
+      annotations:
+        nginx.ingress.kubernetes.io/enable-global-auth: false
+  valuesFrom:
+  - secretKeyRef:
+      name: vouch-secrets
+  - configMapKeyRef:
+      name: vouch-ingress
+      key: ingress
