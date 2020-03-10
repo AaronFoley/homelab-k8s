@@ -21,6 +21,8 @@ spec:
           memory: 32Mi
       ingress:
         enabled: true
+      persistentVolume:
+        existingClaim: 'prometheus-alertmanager'
 
     server:
       global:
@@ -35,6 +37,8 @@ spec:
           memory: 512Mi
       ingress:
         enabled: true
+      persistentVolume:
+        existingClaim: 'prometheus-server'
 
     serverFiles:
       alerting_rules.yml:
