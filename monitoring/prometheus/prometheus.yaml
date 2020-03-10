@@ -24,6 +24,14 @@ spec:
       persistentVolume:
         existingClaim: 'prometheus-alertmanager'
 
+    nodeExporter:
+      image:
+        tag: v1.0.0-rc.0
+
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          effect: "NoSchedule"
+
     server:
       global:
         scrape_interval: 30s
