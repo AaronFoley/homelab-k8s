@@ -22,6 +22,14 @@ spec:
         cpu: 100m
         memory: 128Mi
 
+    grafana.ini:
+      auth:
+        disable_login_form: true
+        disable_signout_menu: true
+      auth.anonymous:
+        enabled: true
+        org_role: Admin
+
   valuesFrom:
   - configMapKeyRef:
       name: grafana-ingress
