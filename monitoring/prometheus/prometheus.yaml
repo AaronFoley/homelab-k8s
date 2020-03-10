@@ -1,0 +1,70 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  releaseName: prometheus
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus
+    version: 11.0.2
+  values:
+    alertmanager:
+      resources:
+        limits:
+          cpu: 10m
+          memory: 32Mi
+        requests:
+          cpu: 10m
+          memory: 32Mi
+      ingress:
+        enabled: true
+
+    server:
+      global:
+        scrape_interval: 30s
+        scrape_timeout: 30s
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 500m
+          memory: 512Mi
+      ingress:
+        enabled: true
+
+    serverFiles:
+      alerting_rules.yml:
+        groups:
+          - name: Instances
+            rules:
+              - alert: InstanceDown
+                expr: up == 0
+                for: 5m
+                labels:
+                  severity: page
+                annotations:
+                  description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+                  summary: 'Instance {{ $labels.instance }} down'
+
+    alertmanagerFiles:
+      alertmanager.yml:
+        global: {}
+
+        receivers:
+          - name: email-receiver
+
+        route:
+          group_wait: 10s
+          group_interval: 5m
+          receiver: email-receiver
+          repeat_interval: 3h
+
+  valuesFrom:
+  - configMapKeyRef:
+      name: prometheus-ingress
+  - secretKeyRef:
+      name: alertmanager-secrets
