@@ -1,0 +1,43 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  releaseName: sonarr
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: sonarr
+    version: 3.0.0
+  values:
+    image:
+      repository: linuxserver/sonarr
+      tag: 3.0.3.698-ls172
+    ingress:
+      enabled: true
+    timezone: "Australia/Sydney"
+    persistence:
+      config:
+        storageClass: "gluster-heketi"
+        accessMode: ReadWriteOnce
+        size: 2Gi
+      downloads:
+        enabled: true
+        existingClaim: "nfs-media-downloads-pvc"
+      tv:
+        enabled: false
+      extraExistingClaimMounts:
+        - name: media
+          existingClaim: nfs-media-pvc
+          mountPath: /media
+          readOnly: false
+    resources:
+      requests:
+        memory: 350Mi
+        cpu: 25m
+      limits:
+        memory: 500Mi
+  valuesFrom:
+  - configMapKeyRef:
+      name: sonarr-ingress

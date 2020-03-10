@@ -1,0 +1,39 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nzbget
+  namespace: media
+spec:
+  releaseName: nzbget
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: nzbget
+    version: 3.1.0
+  values:
+    image:
+      repository: linuxserver/nzbget
+      tag: v21.0-ls41
+    ingress:
+      enabled: true
+    timezone: "Australia/Sydney"
+    persistence:
+      downloads:
+        enabled: true
+        existingClaim: "nfs-media-downloads-pvc"
+      extraMounts:
+      - name: media
+        claimName: nfs-media-pvc
+      config:
+        enabled: true
+        storageClass: "gluster-heketi"
+        size: 30Gi
+    resources:
+      requests:
+        memory: 300Mi
+        cpu: 25m
+      limits:
+        memory: 400Mi
+  valuesFrom:
+  - configMapKeyRef:
+      name: nzbget-ingress

@@ -1,0 +1,43 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  releaseName: radarr
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: radarr
+    version: 3.0.0
+  values:
+    image:
+      repository: linuxserver/radarr
+      tag: 3.0.0.2619-ls4
+    ingress:
+      enabled: true
+    timezone: "Australia/Sydney"
+    persistence:
+      config:
+        storageClass: "gluster-heketi"
+        accessMode: ReadWriteOnce
+        size: 2Gi
+      downloads:
+        enabled: true
+        existingClaim: "nfs-media-downloads-pvc"
+      movies:
+        enabled: false
+      extraExistingClaimMounts:
+        - name: media
+          existingClaim: nfs-media-pvc
+          mountPath: /media
+          readOnly: false
+    resources:
+      requests:
+        memory: 350Mi
+        cpu: 25m
+      limits:
+        memory: 500Mi
+  valuesFrom:
+  - configMapKeyRef:
+      name: radarr-ingress
