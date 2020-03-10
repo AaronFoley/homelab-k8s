@@ -26,9 +26,17 @@ spec:
       auth:
         disable_login_form: true
         disable_signout_menu: true
+      alerting:
+        enabled: false
       auth.anonymous:
         enabled: true
-        org_role: Admin
+        org_role: Editor
+
+    sidecar:
+      dashboards:
+        enabled: true
+      datasources:
+        enabled: true
 
   valuesFrom:
   - configMapKeyRef:
