@@ -33,7 +33,7 @@ spec:
         memory: 300Mi
         cpu: 25m
       limits:
-        memory: 400Mi
+        memory: 800Mi
   valuesFrom:
   - configMapKeyRef:
       name: nzbget-ingress
