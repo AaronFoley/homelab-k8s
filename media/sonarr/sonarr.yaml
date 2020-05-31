@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 3.0.3.698-ls172
+      tag: 3.0.3.834-ls11
     ingress:
       enabled: true
     timezone: "Australia/Sydney"
