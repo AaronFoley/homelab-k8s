@@ -1,0 +1,18 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: unifi
+  namespace: unifi
+spec:
+  releaseName: unifi
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    version: 0.10.0
+    name: unifi
+  values:
+    ingress:
+      enabled: true
+  valuesFrom:
+  - configMapKeyRef:
+      name: unifi-ingress
