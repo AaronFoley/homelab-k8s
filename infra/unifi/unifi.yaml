@@ -3,7 +3,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: unifi
-  namespace: unifi
+  namespace: infra
 spec:
   releaseName: unifi
   chart:
@@ -11,6 +11,21 @@ spec:
     version: 0.10.0
     name: unifi
   values:
+    controllerService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: 10.71.100.2
+    discoveryService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: 10.71.100.2
+    stunService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: 10.71.100.2
     ingress:
       enabled: true
   valuesFrom:
