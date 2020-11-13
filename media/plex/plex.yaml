@@ -12,8 +12,8 @@ spec:
     path: charts/kube-plex
   values:
     image:
-      repository: plexinc/pms-docker
-      tag: 1.20.3.3483-211702a9f
+      repository: linuxserver/plex
+      tag: version-1.20.4.3517-ab5e1197c
     kubePlex:
       enabled: false
     ingress:
