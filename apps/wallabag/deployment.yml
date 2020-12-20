@@ -17,39 +17,39 @@ spec:
         app.kubernetes.io/name: wallabag
     spec:
       containers:
-        - name: wallabag
-          image: "wallabag/wallabag:2.4.0"
-          imagePullPolicy: IfNotPresent
-          envFrom:
-            - secretRef:
-                name: wallabag-secrets
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            exec:
-              command:
-                - curl
-                - -f
-                - http://localhost:80/login
-          readinessProbe:
-            exec:
-              command:
-                - curl
-                - -f
-                - http://localhost:80/login
-          volumeMounts:
-            - mountPath: /var/www/wallabag/web/assets/images
-              name: storage
-            - mountPath: /var/www/wallabag/app/config/parameters.yml
-              name: config
-              subPath: parameters.yml
-            - mountPath: /var/www/wallabag/var/cache
-              name: cache
-        volumes:
-          - name: cache
-            emptyDir: {}
-          - name: storage
-            persistentVolumeClaim:
-              claimName: wallabag
+      - name: wallabag
+        image: "wallabag/wallabag:2.4.0"
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: wallabag-secrets
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+              - curl
+              - -f
+              - http://localhost:80/login
+        readinessProbe:
+          exec:
+            command:
+              - curl
+              - -f
+              - http://localhost:80/login
+        volumeMounts:
+          - mountPath: /var/www/wallabag/web/assets/images
+            name: storage
+          - mountPath: /var/www/wallabag/app/config/parameters.yml
+            name: config
+            subPath: parameters.yml
+          - mountPath: /var/www/wallabag/var/cache
+            name: cache
+      volumes:
+        - name: cache
+          emptyDir: {}
+        - name: storage
+          persistentVolumeClaim:
+            claimName: wallabag
