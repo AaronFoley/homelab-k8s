@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wallabag
+  namespace: apps
   labels:
     app.kubernetes.io/name: wallabag
 spec:

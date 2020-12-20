@@ -13,3 +13,5 @@ spec:
   values:
     git:
       url: "git@github.com:AaronFoley/homelab-k8s-private.git"
+    registry:
+      disableScanning: true
