@@ -16,6 +16,11 @@ spec:
       annotations:
         metallb.universe.tf/allow-shared-ip: unifi
       loadBalancerIP: 10.71.100.2
+    guiService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: 10.71.100.2
     discoveryService:
       type: LoadBalancer
       annotations:
