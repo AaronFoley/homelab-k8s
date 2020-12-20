@@ -42,9 +42,6 @@ spec:
         volumeMounts:
           - mountPath: /var/www/wallabag/web/assets/images
             name: storage
-          - mountPath: /var/www/wallabag/app/config/parameters.yml
-            name: config
-            subPath: parameters.yml
           - mountPath: /var/www/wallabag/var/cache
             name: cache
       volumes:
