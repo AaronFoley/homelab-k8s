@@ -11,6 +11,10 @@ spec:
     version: 0.10.0
     name: unifi
   values:
+    image:
+      repository: jacobalberty/unifi
+      tag: stable-6
+      pullPolicy: Always
     controllerService:
       type: LoadBalancer
       annotations:
