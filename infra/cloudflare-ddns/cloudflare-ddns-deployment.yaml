@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-ddns
+  namespace: infra
+  labels:
+    app: cloudflare-ddns
+spec:
+  selector:
+    matchLabels:
+      app: cloudflare-ddns
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns
+    spec:
+      containers:
+        - image: oznu/cloudflare-ddns:master
+          imagePullPolicy: Always
+          name: cloudflare-ddns
+          envFrom:
+          - secretRef:
+            name: cloudflare-ddns-secrets
