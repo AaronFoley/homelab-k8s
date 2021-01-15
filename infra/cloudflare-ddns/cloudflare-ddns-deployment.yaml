@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,4 +23,4 @@ spec:
           name: cloudflare-ddns
           envFrom:
           - secretRef:
-            name: cloudflare-ddns-secrets
+              name: cloudflare-ddns-secrets
