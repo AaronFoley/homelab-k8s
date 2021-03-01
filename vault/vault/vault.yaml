@@ -6,6 +6,7 @@ metadata:
   namespace: vault
 spec:
   releaseName: vault
+  forceUpgrade: True
   chart:
     git: https://github.com/hashicorp/vault-helm
     ref: v0.9.1
