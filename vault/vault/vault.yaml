@@ -31,16 +31,11 @@ spec:
           storage "file" {
             path = "/vault/data"
           }
-
         dataStorage:
           enabled: true
           size: 10Gi
           storageClass: gluster-heketi
           accessMode: ReadWriteOnce
-    ui:
-      enabled: true
-      serviceType: LoadBalancer
-      loadBalancerIP: 10.71.100.3
   valuesFrom:
   - configMapKeyRef:
       name: vault-ingress
