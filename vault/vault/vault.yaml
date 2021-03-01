@@ -8,7 +8,7 @@ spec:
   releaseName: vault
   chart:
     git: https://github.com/hashicorp/vault-helm
-    ref: v0.3.3
+    ref: v0.9.1
     path: .
   values:
     server:
@@ -37,10 +37,10 @@ spec:
           size: 10Gi
           storageClass: gluster-heketi
           accessMode: ReadWriteOnce
-      ui:
-        enabled: true
-        serviceType: LoadBalancer
-        loadBalancerIP: 10.71.100.3
+    ui:
+      enabled: true
+      serviceType: LoadBalancer
+      loadBalancerIP: 10.71.100.3
   valuesFrom:
   - configMapKeyRef:
       name: vault-ingress
