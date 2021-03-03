@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wallabag
+  name: guacamole
   namespace: apps
   labels:
     app.kubernetes.io/name: guacamole
