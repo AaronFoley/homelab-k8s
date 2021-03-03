@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guacd
+  namespace: apps
+  labels:
+    app.kubernetes.io/name: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: guacamole-guacd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: guacamole-guacd
+    spec:
+      containers:
+      - name: guacd
+        image: "guacamole/guacd:1.3.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: guacd
+            containerPort: 4822
+            protocol: TCP

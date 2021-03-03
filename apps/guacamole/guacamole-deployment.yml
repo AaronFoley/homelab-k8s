@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wallabag
+  namespace: apps
+  labels:
+    app.kubernetes.io/name: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: guacamole-guacamole
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: guacamole-guacamole
+    spec:
+      containers:
+      - name: guacamole
+        image: "guacamole/guacamole:1.3.0"
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: GUACD_HOSTNAME
+            value: "guacd"
+        envFrom:
+          - secretRef:
+              name: guacamole-secrets
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
