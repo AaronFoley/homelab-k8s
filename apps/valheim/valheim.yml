@@ -13,12 +13,17 @@ spec:
   values:
     env:
       SERVER_NAME: "The Arena Valheim"
-      WORLD_NAME: "Dedicated"
+      WORLD_NAME: "Faerun"
       SERVER_PUBLIC: False
       VPCFG_Server_enabled: True
       VPCFG_Server_enforceMod: False
       VPCFG_Server_dataRate: 600
       TZ: "Australia/Sydney"
+
+      VALHEIM_PLUS: true
+      VPCFG_Server_enabled: true
+      VPCFG_Server_enforceMod: false
+      VPCFG_Server_dataRate: 600
 
       # Set in Secrets:
       # SERVER_PASS
