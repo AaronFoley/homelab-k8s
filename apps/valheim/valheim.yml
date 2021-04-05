@@ -1,0 +1,53 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: valheim
+  namespace: apps
+spec:
+  releaseName: valheim
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: valheim
+    version: 2.1.1
+  values:
+    env:
+      SERVER_NAME: "The Arena Valheim"
+      WORLD_NAME: "Dedicated"
+      SERVER_PUBLIC: False
+      VPCFG_Server_enabled: True
+      VPCFG_Server_enforceMod: False
+      VPCFG_Server_dataRate: 600
+      TZ: "Australia/Sydney"
+
+      # Set in Secrets:
+      # SERVER_PASS
+      # DISCORD_WEBHOOK
+
+      # Notify when someone logs in
+      VALHEIM_LOG_FILTER_CONTAINS_Spawned: "Got character ZDOID from"
+      ON_VALHEIM_LOG_FILTER_CONTAINS_Spawned: '{ read l; l=${l//*ZDOID from /}; l=${l// :*/}; msg="Player $l spawned into the world"; curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$msg\"}" "$DISCORD_WEBHOOK"; }'
+
+      # Notify when restarting
+      DISCORD_RESTART_MESSAGE: "Restarting Valheim server in one minute!"
+      PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_MESSAGE\"}" "$DISCORD_WEBHOOK" && sleep 60'
+
+    service:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      loadBalancerIP: 10.71.100.3
+    persistence:
+      config:
+        storageClass: "gluster-heketi"
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 10Gi
+        resources:
+      requests:
+        memory: 2048Mi
+        cpu: 300m
+      limits:
+        memory: 4096Mi
+  valuesFrom:
+  - secretKeyRef:
+      name: valheim-secrets
