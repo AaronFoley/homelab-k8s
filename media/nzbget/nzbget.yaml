@@ -7,27 +7,29 @@ metadata:
 spec:
   releaseName: nzbget
   chart:
-    repository: https://billimek.com/billimek-charts/
+    repository: https://k8s-at-home.com/charts/
     name: nzbget
-    version: 3.1.0
+    version: 9.1.1
   values:
     image:
       repository: linuxserver/nzbget
-      tag: v21.0-ls45
+      tag: version-v21.0
     ingress:
       enabled: true
-    timezone: "Australia/Sydney"
+    env:
+      TZ: "Australia/Sydney"
     persistence:
+      config:
+        storageClass: "gluster-heketi"
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 2Gi
       downloads:
         enabled: true
         existingClaim: "nfs-media-downloads-pvc"
-      extraMounts:
-      - name: media
-        claimName: nfs-media-pvc
-      config:
+      media:
         enabled: true
-        storageClass: "gluster-heketi"
-        size: 30Gi
+        existingClaim: "nfs-media-pvc"
     resources:
       requests:
         memory: 300Mi
