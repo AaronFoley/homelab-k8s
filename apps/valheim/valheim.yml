@@ -24,18 +24,32 @@ spec:
       VPCFG_Server_enabled: true
       VPCFG_Server_enforceMod: false
       VPCFG_Server_dataRate: 600
+      # Don't log duplicate lines
+      BEPINEXCFG_Logging_DOT_Console_WriteUnityLog: False
 
       # Set in Secrets:
       # SERVER_PASS
       # DISCORD_WEBHOOK
 
+      # Notify when shutting down
+      DISCORD_PRESHUTDOWN_MESSAGE: Server is SHUTTING DOWN!
+      PRE_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_PRESHUTDOWN_MESSAGE\"}" "$DISCORD_WEBHOOK"'
+
+      # Notify when the server is about to restart
+      DISCORD_PRERESTART_MESSAGE: Server is RESTARTING in one minute!"
+      PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_PRERESTART_MESSAGE\"}" "$DISCORD_WEBHOOK" && sleep 60'
+
+      # Notify when the server restarts
+      DISCORD_POSTRESTART_MESSAGE: Server is RESTARTED!
+      POST_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_POSTRESTART_MESSAGE\"}" "$DISCORD_WEBHOOK"'
+
+      # Notify when the start starts
+      DISCORD_POSTSTART_MESSAGE: Server is STARTED!
+      POST_START_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_POSTSTART_MESSAGE\"}" "$DISCORD_WEBHOOK"'
+
       # Notify when someone logs in
       VALHEIM_LOG_FILTER_CONTAINS_Spawned: "Got character ZDOID from"
       ON_VALHEIM_LOG_FILTER_CONTAINS_Spawned: '{ read l; l=${l//*ZDOID from /}; l=${l// :*/}; msg="Player $l spawned into the world"; curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$msg\"}" "$DISCORD_WEBHOOK"; }'
-
-      # Notify when restarting
-      DISCORD_RESTART_MESSAGE: "Restarting Valheim server in one minute!"
-      PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"content\":\"$DISCORD_MESSAGE\"}" "$DISCORD_WEBHOOK" && sleep 60'
 
     service:
       type: LoadBalancer
