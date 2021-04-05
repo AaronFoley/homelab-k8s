@@ -7,31 +7,28 @@ metadata:
 spec:
   releaseName: sonarr
   chart:
-    repository: https://billimek.com/billimek-charts/
+    repository: https://k8s-at-home.com/charts/
     name: sonarr
-    version: 3.0.0
+    version: 10.1.1
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 3.0.3.834-ls11
+      tag: version-3.0.6.1196
     ingress:
       enabled: true
-    timezone: "Australia/Sydney"
+    env:
+      TZ: "Australia/Sydney"
     persistence:
       config:
         storageClass: "gluster-heketi"
         accessMode: ReadWriteOnce
         size: 2Gi
+      media:
+        enabled: true
+        existingClaim: "nfs-media-pvc"
       downloads:
         enabled: true
         existingClaim: "nfs-media-downloads-pvc"
-      tv:
-        enabled: false
-      extraExistingClaimMounts:
-        - name: media
-          existingClaim: nfs-media-pvc
-          mountPath: /media
-          readOnly: false
     resources:
       requests:
         memory: 350Mi
