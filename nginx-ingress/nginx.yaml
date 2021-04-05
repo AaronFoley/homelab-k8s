@@ -7,15 +7,18 @@ metadata:
 spec:
   releaseName: nginx-ingress
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
+    repository: https://kubernetes.github.io/ingress-nginx
     name: nginx-ingress
-    version: 1.30.2
+    version: 3.26.0
   values:
     controller:
       replicaCount: 2
       service:
         loadBalancerIP: 10.71.100.1
         externalTrafficPolicy: Local
+      config:
+        client-body-buffer-size: 32M
+        proxy-body-size: 1G
   valuesFrom:
   - configMapKeyRef:
       name: nginx-config
