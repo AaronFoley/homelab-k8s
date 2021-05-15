@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: mariadb
+  namespace: apps
+spec:
+  releaseName: mariadb
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: mariadb
+    version: 9.3.11
+  values:
+    auth:
+      existingSecret: mariadb-secrets
+    architecture: standalone
+    primary:
+      persistence:
+        enabled: true
+        storageClass: gluster-heketi
+        size: 20Gi
