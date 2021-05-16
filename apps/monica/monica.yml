@@ -11,6 +11,8 @@ spec:
     name: monica
     version: 4.2.0
   values:
+    image:
+      tag: 3.0.1-apache
     env:
       TZ: 'Australia/Sydney'
       # See https://raw.githubusercontent.com/monicahq/monica/master/.env.example
