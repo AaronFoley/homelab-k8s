@@ -1,0 +1,28 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: monica
+  namespace: apps
+spec:
+  releaseName: valheim
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: monica
+    version: 4.2.0
+  values:
+    env:
+      TZ: 'Australia/Sydney'
+      # See https://raw.githubusercontent.com/monicahq/monica/master/.env.example
+      APP_ENV: production
+    persistence:
+      config:
+        storageClass: "gluster-heketi"
+        accessMode: ReadWriteOnce
+        enabled: true
+        size: 5Gi
+  valuesFrom:
+  - secretKeyRef:
+      name: monica-secrets
+  - configMapKeyRef:
+      name: monica-ingress
