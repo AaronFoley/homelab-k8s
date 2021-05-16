@@ -13,20 +13,36 @@ spec:
   values:
     image:
       tag: 3.0.1-apache
-    env:
-      TZ: 'Australia/Sydney'
-      # See https://raw.githubusercontent.com/monicahq/monica/master/.env.example
-      APP_ENV: production
+    envFrom:
+      - secretRef:
+          name: monica-secrets
+    additionalContainers:
+      - name: monica-cron
+        image: monica:3.0.1-apache
+        volumeMounts:
+          - name: config
+            mountPath: /var/www/html/storage
+        envFrom:
+        - secretRef:
+            name: monica-secrets
+        args: ['cron.sh']
+      - name: monica-queue
+        image: monica:3.0.1-apache
+        volumeMounts:
+          - name: config
+            mountPath: /var/www/html/storage
+        envFrom:
+        - secretRef:
+            name: monica-secrets
+        args: ['queue.sh']
     persistence:
       config:
         storageClass: "gluster-heketi"
-        accessMode: ReadWriteOnce
+        accessMode: ReadWriteMany
         enabled: true
         size: 5Gi
     ingress:
       enabled: true
   valuesFrom:
-  - secretKeyRef:
-      name: monica-secrets
   - configMapKeyRef:
       name: monica-ingress

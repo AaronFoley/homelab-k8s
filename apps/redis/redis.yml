@@ -1,0 +1,24 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: apps
+spec:
+  releaseName: redis
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: redis
+    version: 14.1.1
+  values:
+    architecture: standalone
+    auth:
+      existingSecret: redis-secrets
+      existingSecretPasswordKey: redis-password
+    master:
+      persistence:
+        enabled: true
+        storageClass: gluster-heketi
+        size: 10Gi
+    replica:
+      replicaCount: 0
