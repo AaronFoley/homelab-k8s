@@ -5,7 +5,7 @@ metadata:
   name: monica
   namespace: apps
 spec:
-  releaseName: valheim
+  releaseName: monica
   chart:
     repository: https://k8s-at-home.com/charts/
     name: monica
