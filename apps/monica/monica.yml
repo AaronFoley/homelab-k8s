@@ -21,6 +21,8 @@ spec:
         accessMode: ReadWriteOnce
         enabled: true
         size: 5Gi
+    ingress:
+      enabled: true
   valuesFrom:
   - secretKeyRef:
       name: monica-secrets
