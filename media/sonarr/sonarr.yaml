@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: version-3.0.6.1196
+      tag: version-3.0.6.1265
     ingress:
       enabled: true
     env:

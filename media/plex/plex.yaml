@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: linuxserver/plex
-      tag: version-1.22.1.4275-48e10484b
+      tag: version-1.23.3.4707-ebb5fe9f3
     kubePlex:
       enabled: false
     ingress:
