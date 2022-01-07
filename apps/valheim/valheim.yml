@@ -12,18 +12,15 @@ spec:
     version: 2.1.1
   values:
     env:
-      SERVER_NAME: "The Arena Valheim"
-      WORLD_NAME: "Faerun"
+      SERVER_NAME: "Meme Babies"
+      WORLD_NAME: "MemeWorld"
       SERVER_PUBLIC: False
+      VALHEIM_PLUS: true
       VPCFG_Server_enabled: True
-      VPCFG_Server_enforceMod: False
+      VPCFG_Server_enforceMod: True
       VPCFG_Server_dataRate: 600
       TZ: "Australia/Sydney"
 
-      VALHEIM_PLUS: true
-      VPCFG_Server_enabled: true
-      VPCFG_Server_enforceMod: false
-      VPCFG_Server_dataRate: 600
       # Don't log duplicate lines
       BEPINEXCFG_Logging_DOT_Console_WriteUnityLog: False
 
@@ -62,11 +59,11 @@ spec:
         enabled: true
         size: 10Gi
         resources:
-      requests:
-        memory: 2048Mi
-        cpu: 300m
-      limits:
-        memory: 4096Mi
+    requests:
+      memory: 2048Mi
+      cpu: 300m
+    limits:
+      memory: 4096Mi
   valuesFrom:
   - secretKeyRef:
       name: valheim-secrets
