@@ -67,7 +67,7 @@ spec:
       VPCFG_FireSource_torches: true
 
       VPCFG_Workbench_enabled: True
-      VPCFG_workbenchRange: 40
+      VPCFG_Workbench_workbenchRange: 40
 
       VPCFG_Smelter_enabled: True
       VPCFG_Smelter_autoDeposit: True
