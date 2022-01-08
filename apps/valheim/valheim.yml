@@ -19,6 +19,94 @@ spec:
       VPCFG_Server_enabled: True
       VPCFG_Server_enforceMod: True
       VPCFG_Server_dataRate: 600
+      VPCFG_Server_serverSyncsConfig: True
+      VPCFG_Server_serverSyncHotkeys: True
+
+      VPCFG_AdvancedBuildingMode_enabled: True
+      VPCFG_AdvancedBuildingMode_copyObjectRotation: Comma
+      VPCFG_AdvancedBuildingMode_pasteObjectRotation: Period
+      VPCFG_AdvancedBuildingMode_increaseScrollSpeed: PageUp
+      VPCFG_AdvancedBuildingMode_decreaseScrollSpeed: PageDown
+
+      VPCFG_AdvancedEditingMode_enabled: True
+      VPCFG_AdvancedEditingMode_confirmPlacementOfAdvancedEditingMode: End
+      VPCFG_AdvancedEditingMode_copyObjectRotation: Comma
+      VPCFG_AdvancedEditingMode_pasteObjectRotation: Period
+      VPCFG_AdvancedEditingMode_increaseScrollSpeed: PageUp
+      VPCFG_AdvancedEditingMode_decreaseScrollSpeed: PageDown
+
+      VPCFG_GridAlignment_enabled: True
+      VPCFG_GridAlignment_align: LeftAlt
+      VPCFG_GridAlignment_alignToggle: F7
+      VPCFG_GridAlignment_changeDefaultAlignment: F6
+
+      VPCFG_Map_enabled: True
+      VPCFG_Map_shareMapProgression: True
+      VPCFG_Map_preventPlayerFromTurningOffPublicPosition: True
+      VPCFG_Map_shareablePins: True
+      VPCFG_Map_showCartsAndBoats: True
+
+      VPCFG_Building_enabled: True
+      VPCFG_Building_enableAreaRepair: True
+
+      VPCFG_CraftFromChest_enable: True
+      VPCFG_CraftFromChest_checkFromWorkbench: True
+
+      VPCFG_Player_enable: True
+      VPCFG_Player_baseAutoPickUpRange: 4
+      VPCFG_Player_cropNotifier: True
+      VPCFG_Player_autoRepair: True
+
+      VPCFG_GameClock_enabled: True
+
+      VPCFG_Hud_enabled: True
+      VPCFG_Hud_showRequiredItems: True
+      VPCFG_Hud_displayBowAmmoCounts: 1
+
+      VPCFG_FireSource_enable: True
+      VPCFG_FireSource_torches: true
+
+      VPCFG_Workbench_enabled: True
+      VPCFG_workbenchRange: 40
+
+      VPCFG_Smelter_enabled: True
+      VPCFG_Smelter_autoDeposit: True
+      VPCFG_Smelter_autoFuel: True
+      VPCFG_Smelter_autoRange: 5
+
+      VPCFG_Furnace_enabled: True
+      VPCFG_Furnace_autoDeposit: True
+      VPCFG_Furnace_autoFuel: True
+      VPCFG_Furnace_autoRange: 5
+
+      VPCFG_Kiln_enabled: True
+      VPCFG_Kiln_autoDeposit: True
+      VPCFG_Kiln_autoFuel: True
+      VPCFG_Kiln_autoRange: 5
+      VPCFG_Kiln_stopAutoFuelThreshold: 100
+
+      VPCFG_SpinningWheel_enabled: True
+      VPCFG_SpinningWheel_autoDeposit: True
+      VPCFG_SpinningWheel_autoFuel: True
+      VPCFG_SpinningWheel_autoRange: 5
+
+      VPCFG_Windmill_enabled: True
+      VPCFG_Windmill_autoDeposit: True
+      VPCFG_Windmill_autoFuel: True
+      VPCFG_Windmill_autoRange: 5
+
+      VPCFG_Fermenter_enabled: True
+      VPCFG_Fermenter_showDuration: True
+      VPCFG_Fermenter_autoDeposit: True
+      VPCFG_Fermenter_autoFuel: True
+      VPCFG_Fermenter_autoRange: 5
+
+      VPCFG_Beehive_enabled: True
+      VPCFG_Beehive_showDuration: True
+      VPCFG_Beehive_autoDeposit: True
+      VPCFG_Beehive_autoFuel: True
+      VPCFG_Beehive_autoRange: 5
+
       TZ: "Australia/Sydney"
 
       # Don't log duplicate lines
