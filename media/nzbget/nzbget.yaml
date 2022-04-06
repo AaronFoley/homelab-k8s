@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: linuxserver/nzbget
-      tag: version-v21.0
+      tag: version-v21.1
     ingress:
       enabled: true
     env:

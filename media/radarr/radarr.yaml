@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: version-3.2.2.5080
+      tag: version-4.0.5.5981
     ingress:
       enabled: true
     env:
